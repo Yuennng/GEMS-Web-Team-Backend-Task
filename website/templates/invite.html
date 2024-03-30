@@ -1,0 +1,129 @@
+{% extends "base.html" %} {% block title %}Invite{% endblock %} {% block
+    content %}
+    
+
+<h1 align="center">Invitations</h1>
+<!-- List invitations -->
+<ul class="list-group list-group-flush" id="invites">
+  {% for invitee in user.invitations %}
+  <li class="list-group-item">
+    Name : {{ invitee.name }}
+    <br />
+    Email : {{ invitee.email }}
+    <br />
+    Invitation ID : {{ invitee.invite_id }}
+    <button type="button" class="close" onClick="deleteNote({{ invitee.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+
+
+<!-- Button trigger modal -->
+
+<br />
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
+  Invite
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <button type="button" class="close" 
+                 data-dismiss="modal">
+                     <span aria-hidden="true">&times;</span>
+                     <span class="sr-only">Close</span>
+              </button>
+          </div>
+          
+          <!-- Modal Body -->
+          <div class="modal-body">
+ 
+            <form method="POST">
+              <h3 align="center">Invite</h3>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="Enter name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email1">Email Address</label>
+                <input
+                  type="email1"
+                  class="form-control"
+                  id="email1"
+                  name="email1"
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email2">Alternate Email Address</label>
+                <input
+                  type="email2"
+                  class="form-control"
+                  id="email2"
+                  name="email2"
+                  placeholder="Enter alternate email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone-num">Phone Number</label>
+                <input
+                  type="phone-num"
+                  class="form-control"
+                  id="phone-num"
+                  name="phone-num"
+                  placeholder="Enter phone number"
+                />
+              </div>
+              <div class="form-group">
+                <label for="org-name">Organization Name</label>
+                <input
+                  type="org-name"
+                  class="form-control"
+                  id="org-name"
+                  name="org-name"
+                  placeholder="Enter organization name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="org-role">Organization Role</label>
+                <input
+                  type="org-role"
+                  class="form-control"
+                  id="org-role"
+                  name="org-role"
+                  placeholder="Enter organization role"
+                />
+              </div>
+              <div class="form-group">
+                <label for="valid-date">Validity Due</label>
+                <input
+                  type="valid-date"
+                  class="form-control"
+                  id="valid-date"
+                  name="valid-date"
+                  placeholder="Enter due date of invitation validity"
+                />
+              </div>
+              <br />
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+    

@@ -1,0 +1,110 @@
+{% extends "base.html" %} {% block title %}Profile{% endblock %} {% block content
+%}
+<h1 align="center">User Profile</h1>
+<form method="POST" enctype="multipart/form-data">  <!-- cannot use PUT in html form --> 
+  <label for="profile_pic">Profile Picture</label>
+  {% if file_url %}
+  <div>
+    <img src="{{ file_url }}">
+  </div>
+  {% endif %}
+  <div class="form-group">
+    {{ form.hidden_tag() }} 
+    {% for error in form.profile_pic.errors %}
+      <span style="color: red;">{{ error }}</span>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-auto">
+      {{ form.profile_pic(class="form-control") }}
+    </div>
+    <div class="col-auto">
+      {{ form.submit(class="btn btn-success") }}
+    </div>
+  </div>
+</form>
+<br />
+<form method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      value="{{ user.name }}"
+      placeholder="{{ user.name }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email1">Email Address</label>
+    <input
+      type="email1"
+      class="form-control"
+      id="email1"
+      name="email1"
+      value="{{ user.email1 }}"
+      placeholder="{{ user.email1 }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email2">Alternate Email Address</label>
+    <input
+      type="email2"
+      class="form-control"
+      id="email2"
+      name="email2"
+      value="{{ user.email2 }}"
+      placeholder="{{ user.email2 }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="phone-num">Phone Number</label>
+    <input
+      type="phone-num"
+      class="form-control"
+      id="phone-num"
+      name="phone-num"
+      value="{{ user.phone_num }}"
+      placeholder="{{ user.phone_num }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="org-name">Organization Name</label>
+    <input
+      type="org-name"
+      class="form-control"
+      id="org-name"
+      name="org-name"
+      value="{{ user.org_name }}"
+      placeholder="{{ user.org_name }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="org-role">Organization Role</label>
+    <input
+      type="org-role"
+      class="form-control"
+      id="org-role"
+      name="org-role"
+      value="{{ user.org_role }}"
+      placeholder="{{ user.org_role }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="valid-date">Validity Due</label>
+    <input
+      type="valid-date"
+      class="form-control"
+      id="valid-date"
+      name="valid-date"
+      value="{{ user.valid_date}}"
+      placeholder="{{ user.valid_date}}"
+    />
+  </div>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </div>
+</form>
+{% endblock %}
